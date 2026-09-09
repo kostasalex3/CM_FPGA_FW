@@ -29,6 +29,17 @@ AXI_SLAVES:
           remote_slave: "1"
         XML: "address_table/modules/IPBUS.xml"
         UHAL_BASE: "auto"
+
+      F1_CROC_RECONFIG:
+        TCL_CALL:
+          command: AXI_PL_DEV_CONNECT
+          axi_control: "${::AXI_ENDPOINT_CTRL}"
+          type: "AXI4"
+          addr:
+            offset: "0xB0010000"
+            range: "64K"
+          data_width: "32"
+          remote_slave: "1"  
       F1_SYS_MGMT:
         TCL_CALL:
           command: AXI_IP_SYS_MGMT

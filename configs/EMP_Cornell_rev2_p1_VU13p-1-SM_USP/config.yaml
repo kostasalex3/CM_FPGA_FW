@@ -19,16 +19,26 @@ AXI_SLAVES:
         INCLUDE_FILE: ${::apollo_root_path}/src/CM_yaml/CM_C2C/Cornell_rev2_p1_C2C.yaml
       F1_IPBUS:
         TCL_CALL:
-          command: AXI_PL_DEV_CONNECT 
+          command: AXI_PL_DEV_CONNECT
           axi_control: "${::AXI_ENDPOINT_CTRL}"
           type: "AXI4"
           addr:
-            offset: "-1"
-            range:  "16M"
+            offset: "0xB0000000"
+            range: "64K"
           data_width: "64"
           remote_slave: "1"
         XML: "address_table/modules/IPBUS.xml"
         UHAL_BASE: "auto"
+      F1_CROC_RECONFIG:
+        TCL_CALL:
+          command: AXI_PL_DEV_CONNECT
+          axi_control: "${::AXI_ENDPOINT_CTRL}"
+          type: "AXI4"
+          addr:
+            offset: "0xB0010000"
+            range: "64K"
+          data_width: "32"
+          remote_slave: "1"    
       F1_IO:
         TCL_CALL: 
           command: AXI_PL_DEV_CONNECT

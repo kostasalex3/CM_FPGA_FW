@@ -41,6 +41,11 @@ entity sub_module is
     ext_AXI_ReadMISO  : in  AXIReadMISO_d64  := DefaultAXIReadMISO_d64;
     ext_AXI_WriteMOSI : out AXIWriteMOSI_d64 := DefaultAXIWriteMOSI_d64;
     ext_AXI_WriteMISO : in  AXIWriteMISO_d64 := DefaultAXIWriteMISO_d64;
+
+    ext_CROC_ReadMOSI  : out AXIReadMOSI  := DefaultAXIReadMOSI  ;   
+    ext_CROC_ReadMISO  : in  AXIReadMISO  := DefaultAXIReadMISO  ;
+    ext_CROC_WriteMOSI : out AXIWriteMOSI := DefaultAXIWriteMOSI  ;
+    ext_CROC_WriteMISO : in  AXIWriteMISO := DefaultAXIWriteMISO  ;
     
     -- tri-color LED
     led_red : out std_logic;
@@ -174,8 +179,15 @@ begin  -- architecture structure
       F1_IPBUS_RMISO                         => ext_AXI_ReadMISO, 
       F1_IPBUS_WMOSI                         => ext_AXI_WriteMOSI,
       F1_IPBUS_WMISO                         => ext_AXI_WriteMISO,
-                                             
-                                             
+
+      F1_CROC_RECONFIG_RMOSI                         => ext_CROC_ReadMOSI ,
+      F1_CROC_RECONFIG_RMISO                         => ext_CROC_ReadMISO ,
+      F1_CROC_RECONFIG_WMOSI                         => ext_CROC_WriteMOSI,
+      F1_CROC_RECONFIG_WMISO                         => ext_CROC_WriteMISO,
+                                                 
+
+                 
+                          
                                              
       CM1_PB_UART_rxd                        => pB_UART_tx,
       CM1_PB_UART_txd                        => pB_UART_rx,

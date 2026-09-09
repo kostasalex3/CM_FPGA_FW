@@ -45,7 +45,6 @@ AXI_SLAVES:
       remote_slave: "1"
     XML: "address_table/modules/IPBUS.xml"
     UHAL_BASE: 0x80500000    
-
   F1_C2C_INTF:
     TCL_CALL: 
       command: AXI_PL_DEV_CONNECT

@@ -1,13 +1,31 @@
 AXI_CONTROL_SETS:
   INCLUDE_FILE:  ${::apollo_root_path}/src/CM_yaml/CM1_base.yaml
   # override default axilite endpoint
+  # AXILITE_ENDPOINT_CTRL:
+  #   axi_interconnect: "${::CM_INTERCONNECT}"
+  #   axi_clk: "${::AXI_MASTER_CLK}"
+  #   axi_rstn: "/SYS_RESET/peripheral_aresetn"
+  #   axi_freq: "${::AXI_MASTER_CLK_FREQ}"
+  #   allocator:
+  #     starting_address: 0xB1000000
+  #     size: 0x00800000
+  #     block_size: 4K
+  AXI_ENDPOINT_CTRL:
+    axi_interconnect: "${::CM_INTERCONNECT}"
+    axi_clk: "${::AXI_MASTER_CLK}"
+    axi_rstn: "/SYS_RESET/peripheral_aresetn"
+    axi_freq: "${::AXI_MASTER_CLK_FREQ}"
+    allocator:
+      starting_address: 0xB0000000
+      size: 0x02000000
+      block_size: 4K
   AXILITE_ENDPOINT_CTRL:
     axi_interconnect: "${::CM_INTERCONNECT}"
     axi_clk: "${::AXI_MASTER_CLK}"
     axi_rstn: "/SYS_RESET/peripheral_aresetn"
     axi_freq: "${::AXI_MASTER_CLK_FREQ}"
     allocator:
-      starting_address: 0xB1000000
+      starting_address: 0xB5000000
       size: 0x00800000
       block_size: 4K
 
@@ -23,8 +41,8 @@ AXI_SLAVES:
           axi_control: "${::AXI_ENDPOINT_CTRL}"
           type: "AXI4"
           addr:
-            offset: "0xB0000000"
-            range: "64K"
+            offset: "-1"
+            range: "16M"
           data_width: "64"
           remote_slave: "1"
         XML: "address_table/modules/IPBUS.xml"
@@ -35,10 +53,11 @@ AXI_SLAVES:
           axi_control: "${::AXI_ENDPOINT_CTRL}"
           type: "AXI4"
           addr:
-            offset: "0xB0010000"
-            range: "64K"
+            offset: "0xB1020000"
+            range: "32K"
           data_width: "32"
-          remote_slave: "1"    
+          remote_slave: "1" 
+
       F1_IO:
         TCL_CALL: 
           command: AXI_PL_DEV_CONNECT
